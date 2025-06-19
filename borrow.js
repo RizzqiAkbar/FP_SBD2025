@@ -1,7 +1,7 @@
 const { connectMySQL } = require('./mysql');
 const { logActivity } = require('./activity');
 
-async function borrowBook(membersId, bookId) {
+async function borrowBook(member_id, book_id, due_date, staff_id) {
     const conn = await connectMySQL();
     const [updateResult] = await conn.execute(
     'UPDATE BOOKS SET available_copies = available_copies - 1 WHERE book_id = ? AND available_copies > 0',

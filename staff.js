@@ -8,7 +8,7 @@ async function addStaff (staff_name, staff_phone) {
     await logActivity('add_staff', {
     satff_id: result.insertId,
     staff_name,
-    phone
+    staff_phone
   });
   console.log("Staff berhasil ditambahkan!");
 }
