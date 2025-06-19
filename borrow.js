@@ -9,7 +9,7 @@ async function borrowBook(membersId, bookId) {
   );
 
   if (updateResult.affectedRows === 0) {
-    console.log("❌ Buku tidak tersedia");
+    console.log("Buku tidak tersedia");
     return;
   }
 
