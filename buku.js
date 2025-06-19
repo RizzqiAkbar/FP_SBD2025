@@ -1,8 +1,22 @@
 const { connectMySQL } = require('./mysql');
+const { logActivity } = require('./activity');
 
 async function addBook(title) {
     const conn = await connectMySQL();
-    await conn.execute('INSERT INTO books (title) VALUES (?)', [title]);
+    const [result] = await conn.execute(
+    'INSERT INTO BOOKS (title, author, genre, publisher, publication_year, category_id, total_copies, available_copies) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [title, author, genre, publisher, year, category_id, copies, copies]
+  );
+  await logActivity('add_book', {
+    book_id: result.insertId,
+    title,
+    author,
+    genre,
+    year,
+    publisher,
+    category_id,
+    total_copies: copies
+  });
     console.log("Buku berhasil ditambahkan!");
 }
 

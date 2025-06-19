@@ -16,21 +16,32 @@ async function main() {
         const choice = readLine.question('Pilih menu: ');
 
         if (choice === '1') {
-            const name = readLine.question('Masukkan nama: ');
-            await addMember(name);
+            const full_name = readline.question('Nama Lengkap: ');
+            const email = readline.questionEMail('Email: ');
+            const phone = readline.question('No HP: ');
+            const address = readline.question('Alamat: ');
+            const type = readline.question('Tipe (STUDENT/TEACHER/PUBLIC): ', { defaultInput: 'PUBLIC' });
+            await addMember(full_name, email, phone, address, type);
         } else if (choice === '2') {
             await listMembers();
         } else if (choice === '3') {
-            const title = readLine.question('Masukkan judul buku: ');
-            await addBook();
+            const title = readline.question('Judul Buku: ');
+            const author = readline.question('Penulis: ');
+            const genre = readline.question('Genre: ');
+            const publisher = readline.question('Penerbit: ');
+            const year = readline.questionInt('Tahun Terbit: ');
+            const category_id = readline.questionInt('ID Kategori: ');
+            const copies = readline.questionInt('Jumlah Salinan: ');
+            await addBook(title, author, genre, publisher, year, category_id, copies);
         } else if (choice === '4') {
             await listBooks();
         } else if (choice === '5') {
-            await listMembers;
-            const membersId = readLine.questionInt('Masukkan ID Member: ');
-            const book = await listBooks();
-            const bookId =readLine.questionInt('Masukkan ID Buku yang ingin dipinjam: ');
-            await borrowBook(membersId, bookId);
+            await listMembers();
+            const member_id = readline.questionInt('ID Member: ');
+            const book_id = readline.questionInt('ID Buku: ');
+            const due_date = readline.question('Tanggal Jatuh Tempo (YYYY-MM-DD): ');
+            const staff_id = readline.questionInt('ID Staff (opsional): ', { defaultInput: 1 });
+            await borrowBook(member_id, book_id, due_date, staff_id);
         } else if (choice === '0') {
             console.log('Terima Kasih Telah Menggunakan...\nExiting...');
             process.exit();

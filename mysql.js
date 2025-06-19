@@ -5,7 +5,7 @@ async function connectMySQL() {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'library_management',
+    database: 'library_Management_System',
     });
     console.log("Sudah terhubung ke Database MySQL");
     return connection;
