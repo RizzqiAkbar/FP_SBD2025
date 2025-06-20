@@ -7,7 +7,7 @@ async function logActivity(action, details) {
         action,
         details
     });
-    console.log("Aktivitas berhasil dicatat!");
+    console.log("✅ Aktivitas berhasil dicatat!");
 }
 
 module.exports = { logActivity };
