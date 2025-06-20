@@ -5,7 +5,7 @@ const client = new MongoClient(uri);
 async function connectMongo() {
     await client.connect();
     const db = client.db('library_management_system');
-    console.log("Sudah terhubung ke Database MongoDB");
+    console.log("✅ Sudah terhubung ke Database MongoDB");
     return db;
 }
 

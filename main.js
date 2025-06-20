@@ -3,7 +3,7 @@ const { addMember, listMembers, printQuestionMember, shortlistMembers, deleteMem
 const { addBook, listBooks, printQuestionBooks, shortlistBooks, deleteBook } = require('./buku');
 const { borrowBook, listBorrowed, returnBook } = require('./borrow');
 const { addCategory, listCategories, printQuestionCategory } = require('./kategori');
-const { addStaff, listStaff, printQuestionStaff } = require('./staff');
+const { addStaff, listStaff, printQuestionStaff, deleteStaff } = require('./staff');
 const { addReview, listReview } = require('./review');
 const { printQuestionGenre, listGenres } = require('./genre');
 
@@ -54,7 +54,7 @@ async function main() {
                 } else if (choicestaff === '2') {
                     await listStaff();
                 } else if (choicestaff === '3') {
-                    await deleteMember();
+                    await deleteStaff();
                 } else if (choicestaff === '0') {
                     break;
                 } else {console.log('\n⚠️ Pilihanmu tidak tersedia\n');}

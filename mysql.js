@@ -7,7 +7,7 @@ async function connectMySQL() {
     password: '',
     database: 'library_Management_System',
     });
-    console.log("Sudah terhubung ke Database MySQL");
+    console.log("✅ Sudah terhubung ke Database MySQL");
     return connection;
 }
 
