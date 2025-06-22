@@ -1,6 +1,6 @@
 const readLine = require('readline-sync');
 const { addMember, listMembers, printQuestionMember, shortlistMembers, deleteMember } = require('./members');
-const { addBook, listBooks, printQuestionBooks, shortlistBooks, deleteBook } = require('./buku');
+const { addBook, listBooks, printQuestionBooks, shortlistBooks, deleteBook, addStok } = require('./buku');
 const { borrowBook, listBorrowed, returnBook } = require('./borrow');
 const { addCategory, listCategories, printQuestionCategory } = require('./kategori');
 const { addStaff, listStaff, printQuestionStaff, deleteStaff } = require('./staff');
@@ -64,10 +64,11 @@ async function main() {
                 console.log('\n=== MENU BUKU - BUKU ===\n')
                 console.log('1. Tambah Buku');
                 console.log('2. Hapus Buku');
-                console.log('3. Tambah Kategori');
-                console.log('4. Tambah Genre');
-                console.log('5. Lihat semua kategori');
-                console.log('6. Lihat semua genre');
+                console.log('3. Tambah/Kurangi stok Buku');
+                console.log('4. Tambah Kategori');
+                console.log('5. Tambah Genre');
+                console.log('6. Lihat semua kategori');
+                console.log('7. Lihat semua genre');
                 console.log('0. Kembali');
 
                 const choicebuku = readLine.question('Pilih menu: ');
@@ -77,12 +78,14 @@ async function main() {
                 } else if (choicebuku === '2') {
                     await deleteBook();
                 } else if (choicebuku === '3') {
-                    await printQuestionCategory();
+                    await addStok();
                 } else if (choicebuku === '4') {
-                    await printQuestionGenre();
+                    await printQuestionCategory();
                 } else if (choicebuku === '5') {
-                    await listCategories();
+                    await printQuestionGenre();
                 } else if (choicebuku === '6') {
+                    await listCategories();
+                } else if (choicebuku === '7') {
                     await listGenres();
                 } else if (choicebuku === '0') {
                     break;

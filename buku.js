@@ -97,4 +97,38 @@ async function deleteBook() {
     }
 }
 
-module.exports = { addBook, listBooks, printQuestionBooks, shortlistBooks, deleteBook };
+async function addStok() {
+    const conn = await connectMySQL();
+    const readLine = require('readline-sync');
+
+    while (true) {
+        console.log('\n1. Tambah stok buku');
+        console.log('2. Kurangi stok buku');
+        console.log('0. Kembali');
+        const pilihan = readLine.question('Pilih menu: ');
+        
+        if (pilihan === '1') {
+            await shortlistBooks();
+            const book_id = readLine.questionInt('Masukkan ID buku: ');
+            const stok = readLine.question('Masukkan jumlah stok: ');
+            await conn.execute('UPDATE BOOKS SET available_copies = available_copies + ?, total_copies = total_copies + ? WHERE book_id = ?',
+                [stok, stok, book_id]
+            );
+            console.log('✅ Stok berhasil ditambahkan!');
+            break;
+        } else if (pilihan === '2') {
+            await shortlistBooks();
+            const book_id = readLine.questionInt('Masukkan ID buku: ');
+            const stok = readLine.question('Masukkan jumlah stok: ');
+            await conn.execute('UPDATE BOOKS SET available_copies = available_copies - ?, total_copies = total_copies - ? WHERE book_id = ?',
+                [stok, stok, book_id]
+            );
+            console.log('✅ Stok berhasil dikurangi!');
+            break;
+        } else if (pilihan === '0') {
+            break;
+        } else {console.log('❌ Pilihan tidak tersedia'); continue;}
+    }
+}
+
+module.exports = { addBook, listBooks, printQuestionBooks, shortlistBooks, deleteBook, addStok };
